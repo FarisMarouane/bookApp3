@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
-import * as BooksAPI from './BooksAPI'
 import CurrentlyReading from './currentlyreading'
 import WantToRead from './wanttoread'
 import Read from './read'
@@ -11,11 +10,6 @@ class Shelves extends Component {
     books: []
   }
 
-  componentDidMount () {
-    BooksAPI.getAll().then(books => this.setState(prevState => ({
-      books: prevState.books.concat(books)
-    })))
-  }
 
   render () {
     const {books} = this.state;
