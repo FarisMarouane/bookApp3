@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
+import * as BooksAPI from './BooksAPI'
 import CurrentlyReading from './currentlyreading'
 import WantToRead from './wanttoread'
 import Read from './read'
@@ -8,6 +9,13 @@ class Shelves extends Component {
 
   state = {
     books: []
+  }
+
+  componentDidMount () {
+      BooksAPI.getAll()
+      .then(books => this.setState({
+        books
+      })).catch(e => console.log(`Error: ${e.message}`))
   }
 
 
@@ -24,9 +32,9 @@ class Shelves extends Component {
             <div className="list-books-content">
               <div>
 
-              <CurrentlyReading />
-              <WantToRead />
-              <Read />
+              <CurrentlyReading books={books} />
+              <WantToRead books={books} />
+              <Read books={books} />
 
               </div>
             </div>
