@@ -18,12 +18,9 @@ class Shelves extends Component {
       })).catch(e => console.log(`Error: ${e.message}`))
   }
 
-
   render () {
     const {books} = this.state;
     return (
-
-
           <div className="list-books">
           {books.map(book => null)}
             <div className="list-books-title">
