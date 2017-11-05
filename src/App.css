@@ -43,6 +43,11 @@ body, .app {
   text-align: center;
 }
 
+/*Book's rating stars*/
+.checked {
+    color: orange;
+}
+
 .open-search {
   position: fixed;
   right: 25px;

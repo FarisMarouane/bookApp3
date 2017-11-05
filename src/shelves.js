@@ -18,20 +18,29 @@ class Shelves extends Component {
       })).catch(e => console.log(`Error: ${e.message}`))
   }
 
+  statusChangeHandler = () => {
+      BooksAPI.getAll()
+      .then(books => this.setState({
+        books
+      })).catch(e => console.log(`Error: ${e.message}`))
+  }
+
   render () {
     const {books} = this.state;
     return (
           <div className="list-books">
-          {books.map(book => null)}
             <div className="list-books-title">
               <h1>MyReads</h1>
             </div>
             <div className="list-books-content">
               <div>
 
-              <CurrentlyReading books={books} />
-              <WantToRead books={books} />
-              <Read books={books} />
+              <CurrentlyReading statusChangeHandler={() => this.statusChangeHandler()}
+               books={books} />
+              <WantToRead statusChangeHandler={() => this.statusChangeHandler()}
+               books={books} />
+              <Read statusChangeHandler={() => this.statusChangeHandler()}
+               books={books} />
 
               </div>
             </div>

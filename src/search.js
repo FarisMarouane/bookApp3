@@ -20,6 +20,7 @@ class Search extends Component {
   }
 
   render () {
+
     return (
           <div>
             <div className="search-books-bar">
@@ -50,6 +51,5 @@ class Search extends Component {
       )
   }
 }
-
 
 export default Search;

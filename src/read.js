@@ -2,6 +2,12 @@ import React, {Component} from 'react'
 import Book from './book'
 
 class Read extends Component {
+
+  statusChangeHandler = () => {
+   this.props.statusChangeHandler();
+  }
+
+
   render () {
     const { books } = this.props;
     return (
@@ -10,7 +16,8 @@ class Read extends Component {
                <div className="bookshelf-books">
                  <ol className="books-grid">
                      {books.map((book, i) => book.shelf === 'read' ?
-                       <li key={i}><Book book={book}/></li> : null
+                       <li key={i}><Book statusChangeHandler={() => this.statusChangeHandler()}
+                       book={book}/></li> : null
                      )}
                  </ol>
                </div>

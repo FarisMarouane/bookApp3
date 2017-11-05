@@ -6,19 +6,11 @@ import Shelves from './shelves'
 import './App.css'
 
 class BooksApp extends React.Component {
-  state = {
-  }
-
   render() {
     return (
       <div className="app">
-
         <Route path='/search' component={Search}/>
-
         <Route exact path='/' component={Shelves} />
-
-
-
       </div>
     )
   }

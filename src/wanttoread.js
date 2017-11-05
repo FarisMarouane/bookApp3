@@ -3,8 +3,8 @@ import Book from './book'
 
 class wantToRead extends Component {
 
-  optionChangeHandler = (e) => {
-    console.log(e.target.value);
+  statusChangeHandler = () => {
+   this.props.statusChangeHandler();
   }
 
   render () {
@@ -15,7 +15,8 @@ class wantToRead extends Component {
                <div className="bookshelf-books">
                  <ol className="books-grid">
                      {books.map((book, i) => book.shelf === 'wantToRead' ?
-                       <li key={i}><Book book={book}/></li> : null
+                       <li key={i}><Book statusChangeHandler={() => this.statusChangeHandler()}
+                        book={book}/></li> : null
                      )}
                  </ol>
                </div>
