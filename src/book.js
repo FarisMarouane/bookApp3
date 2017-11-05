@@ -4,7 +4,7 @@ import * as BooksAPI from './BooksAPI'
 class Book extends Component {
 
   state = {
-    status: this.props.book.shelf || "none",
+    status: this.props.book.shelf || this.props.status || "none",
     rating: this.props.book.averageRating
   }
 
@@ -23,7 +23,7 @@ class Book extends Component {
 
   render () {
   const book = this.props.book;
-  const  status = this.state.status;
+  const  { status, rating } = this.state;
     return (
         <div className="book">
           <div className="book-top">
@@ -40,13 +40,15 @@ class Book extends Component {
               </select>
             </div>
           </div>
-          <div style={{marginTop: '5px'}}>
-            <span className="fa fa-star {rating>0 ? checked}"></span>
-            <span className="fa fa-star {rating>1 ? checked}"></span>
-            <span className="fa fa-star {rating>2 ? checked}"></span>
-            <span className="fa fa-star {rating>3 ? checked}"></span>
-            <span className="fa fa-star {rating>4 ? checked}"></span>
+          {rating ?
+            <div style={{marginTop: '5px'}}>
+            {rating>0 ? <span className="fa fa-star checked"></span>: <span className="fa fa-star"></span>}
+            {rating>1 ? <span className="fa fa-star checked"></span>: <span className="fa fa-star"></span>}
+            {rating>2 ? <span className="fa fa-star checked"></span>: <span className="fa fa-star"></span>}
+            {rating>3 ? <span className="fa fa-star checked"></span>: <span className="fa fa-star"></span>}
+            {rating>4 ? <span className="fa fa-star checked"></span>: <span className="fa fa-star"></span>}
           </div>
+          : null}
           <div className="book-title">{book.title}</div>
           <div className="book-authors">{book.authors}</div>
         </div>

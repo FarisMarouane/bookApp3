@@ -7,7 +7,15 @@ import * as BooksAPI from './BooksAPI'
 class Search extends Component {
 
   state = {
-    bookSearchResults : []
+    bookSearchResults : [],
+    shelvesBooks : []
+  }
+
+  componentDidMount () {
+      BooksAPI.getAll()
+      .then(books => this.setState({
+        shelvesBooks: books.map(book => ({id: book.id, shelf: book.shelf}))
+      })).catch(e => console.log(`Error: ${e.message}`))
   }
 
   searchChangeHandler = (e) => {
@@ -20,7 +28,7 @@ class Search extends Component {
   }
 
   render () {
-
+    const { shelvesBooks, bookSearchResults } = this.state;
     return (
           <div>
             <div className="search-books-bar">
@@ -40,10 +48,19 @@ class Search extends Component {
             </div>
             <div className="search-books-results">
               <ol className="books-grid">
-                {this.state.bookSearchResults.map((book, i) =>
+                {bookSearchResults.map(function (book, i) {
+
+                  let bookSearchResultStatus = shelvesBooks.filter(function (shelvesBook) {
+                    return shelvesBook.id === book.id;
+                  })
+
+                  return (
                       <li key={i}>
-                        <Book book={book} />
+                        <Book status={bookSearchResultStatus[0] ?
+                         bookSearchResultStatus[0].shelf : 'none'} book={book} />
                       </li>
+                    )
+                }
                   )}
               </ol>
             </div>

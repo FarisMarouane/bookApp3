@@ -23,6 +23,7 @@ class Shelves extends Component {
       .then(books => this.setState({
         books
       })).catch(e => console.log(`Error: ${e.message}`))
+      this.forceUpdate();
   }
 
   render () {
