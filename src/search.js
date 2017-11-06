@@ -46,24 +46,26 @@ class Search extends Component {
 
               </div>
             </div>
-            <div className="search-books-results">
-              <ol className="books-grid">
-                {bookSearchResults.map(function (book, i) {
+              <div className="search-books-results">
+                <ol className="books-grid">
+                  {bookSearchResults.map(function (book, i) {
 
-                  let bookSearchResultStatus = shelvesBooks.filter(function (shelvesBook) {
-                    return shelvesBook.id === book.id;
-                  })
+                    let bookSearchResultStatus = shelvesBooks.filter(function (shelvesBook) {
+                      return shelvesBook.id === book.id;
+                    })
 
-                  return (
-                      <li key={i}>
-                        <Book status={bookSearchResultStatus[0] ?
-                         bookSearchResultStatus[0].shelf : 'none'} book={book} />
-                      </li>
-                    )
-                }
-                  )}
-              </ol>
-            </div>
+                    return (
+                        <li key={i}>
+                          <Book status={bookSearchResultStatus[0] ?
+                           bookSearchResultStatus[0].shelf : 'none'} book={book} />
+                        </li>
+                      )
+                  }
+                    )}
+                </ol>
+              </div>
+
+
           </div>
       )
   }
