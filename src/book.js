@@ -5,9 +5,7 @@ import ReactStars from 'react-stars'
 class Book extends Component {
 
   state = {
-    status: this.props.book.shelf || this.props.status || "none",
     book: this.props.book,
-    originalRating: this.props.book.averageRating || 0,
     newRating: +localStorage.getItem(this.props.book.id)
 
   }
@@ -40,7 +38,9 @@ class Book extends Component {
 
   render () {
   const book = this.props.book;
-  const  { status, originalRating, newRating } = this.state;
+  const  {newRating } = this.state;
+  const originalRating = this.props.originalRating || 0;
+
     return (
         <div className="book">
           <div className="book-top">
@@ -48,7 +48,7 @@ class Book extends Component {
             <div title={book.description} className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
           </a>
             <div className="book-shelf-changer">
-              <select value={status} onChange={(e) => this.optionChangeHandler(e)}>
+              <select value={this.props.status} onChange={(e) => this.optionChangeHandler(e)}>
                 <option value="dunno" disabled>Move to...</option>
                 <option value="currentlyReading">currentlyReading</option>
                 <option value="wantToRead">wantToRead</option>

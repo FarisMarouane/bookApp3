@@ -8,14 +8,17 @@ class Search extends Component {
 
   state = {
     bookSearchResults : [],
+    shelvesBooksIdAndShelf : [],
     shelvesBooks : []
   }
 
   componentDidMount () {
       BooksAPI.getAll()
-      .then(books => this.setState({
-        shelvesBooks: books.map(book => ({id: book.id, shelf: book.shelf}))
-      })).catch(e => console.log(`Error: ${e.message}`))
+      .then(books => {(this.setState({
+        shelvesBooksIdAndShelf: books.map(book => ({id: book.id, shelf: book.shelf}))
+      }));
+      this.setState({shelvesBooks: books})
+    }).catch(e => console.log(`Error: ${e.message}`))
   }
 
   searchChangeHandler = (e) => {
@@ -28,7 +31,7 @@ class Search extends Component {
   }
 
   render () {
-    const { shelvesBooks, bookSearchResults } = this.state;
+    const { shelvesBooksIdAndShelf, shelvesBooks, bookSearchResults } = this.state;
     return (
           <div>
             <div className="search-books-bar">
@@ -50,22 +53,27 @@ class Search extends Component {
                 <ol className="books-grid">
                   {bookSearchResults.map(function (book, i) {
 
-                    let bookSearchResultStatus = shelvesBooks.filter(function (shelvesBook) {
+                    let bookSearchResultOnShelveStatus = shelvesBooksIdAndShelf.find(function (shelvesBook) {
                       return shelvesBook.id === book.id;
                     })
 
+                    let bookSearchResultOnShelve = shelvesBooks.find(function (shelvesBook) {
+                      return shelvesBook.id === book.id;
+                    })
+
+                    console.log(`${book.title}`, typeof bookSearchResultOnShelveStatus == 'object');
+
                     return (
                         <li key={i}>
-                          <Book status={bookSearchResultStatus[0] ?
-                           bookSearchResultStatus[0].shelf : 'none'} book={book} />
+                          <Book status={(typeof bookSearchResultOnShelveStatus === 'object') ?
+                            bookSearchResultOnShelveStatus.shelf : 'none'} book={typeof bookSearchResultOnShelveStatus == 'object' ?
+                            bookSearchResultOnShelve : book} />
                         </li>
                       )
                   }
                     )}
                 </ol>
               </div>
-
-
           </div>
       )
   }
