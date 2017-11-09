@@ -61,8 +61,6 @@ class Search extends Component {
                       return shelvesBook.id === book.id;
                     })
 
-                    console.log(`${book.title}`, typeof bookSearchResultOnShelveStatus == 'object');
-
                     return (
                         <li key={i}>
                           <Book status={(typeof bookSearchResultOnShelveStatus === 'object') ?

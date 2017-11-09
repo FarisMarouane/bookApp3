@@ -7,7 +7,6 @@ class Book extends Component {
   state = {
     book: this.props.book,
     newRating: +localStorage.getItem(this.props.book.id)
-
   }
 
 
@@ -29,17 +28,17 @@ class Book extends Component {
 
     if(this.state.originalRating !== 0) {
       delete this.state.originalRating;
-      localStorage.setItem( this.state.book.id, newRating);
+      localStorage.setItem( this.props.book.id, newRating);
     } else {
-      localStorage.setItem( this.state.book.id, newRating);
+      localStorage.setItem( this.props.book.id, newRating);
     }
 
 }
 
   render () {
   const book = this.props.book;
-  const  {newRating } = this.state;
   const originalRating = this.props.originalRating || 0;
+  const newRating = +localStorage.getItem(this.props.book.id);
 
     return (
         <div className="book">
