@@ -64,8 +64,8 @@ class Search extends Component {
                     return (
                         <li key={i}>
                           <Book status={(typeof bookSearchResultOnShelveStatus === 'object') ?
-                            bookSearchResultOnShelveStatus.shelf : 'none'} book={typeof bookSearchResultOnShelveStatus == 'object' ?
-                            bookSearchResultOnShelve : book} />
+                            bookSearchResultOnShelveStatus.shelf : 'none'} book={typeof bookSearchResultOnShelveStatus === 'object' ?
+                            bookSearchResultOnShelve : book} originalRating={book.averageRating}/>
                         </li>
                       )
                   }
