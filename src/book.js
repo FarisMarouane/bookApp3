@@ -21,7 +21,7 @@ class Book extends Component {
       status: e.target.value
     })
 
-    this.props.statusChangeHandler();
+    this.props.getBooks();
   }
 
   ratingChanged = (newRating) => {

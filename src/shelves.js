@@ -1,33 +1,11 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
-import * as BooksAPI from './BooksAPI'
-import CurrentlyReading from './CurrentlyReading'
-import WantToRead from './WantToRead'
-import Read from './Read'
+import Shelf from './Shelf'
 
 class Shelves extends Component {
 
-  state = {
-    books: []
-  }
-
-  componentDidMount () {
-      BooksAPI.getAll()
-      .then(books => this.setState({
-        books
-      })).catch(e => console.log(`Error: ${e.message}`))
-  }
-
-  statusChangeHandler = () => {
-      BooksAPI.getAll()
-      .then(books => this.setState({
-        books
-      })).catch(e => console.log(`Error: ${e.message}`))
-      this.forceUpdate();
-  }
-
   render () {
-    const {books} = this.state;
+    const {books} = this.props;
     return (
           <div className="list-books">
             <div className="list-books-title">
@@ -36,12 +14,12 @@ class Shelves extends Component {
             <div className="list-books-content">
               <div>
 
-              <CurrentlyReading statusChangeHandler={() => this.statusChangeHandler()}
-               books={books} />
-              <WantToRead statusChangeHandler={() => this.statusChangeHandler()}
-               books={books} />
-              <Read statusChangeHandler={() => this.statusChangeHandler()}
-               books={books} />
+                <Shelf title={'Currently Reading'} query={'currentlyReading'} getBooks={() => this.props.getBooks()}
+                  books={books} />
+                <Shelf title={'Want To Read'} query={'wantToRead'} getBooks={() => this.props.getBooks()}
+                  books={books} />
+                <Shelf title={'Read'} query={'read'} getBooks={() => this.props.getBooks()}
+                  books={books} />
 
               </div>
             </div>

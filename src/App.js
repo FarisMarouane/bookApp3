@@ -18,22 +18,21 @@ class BooksApp extends React.Component {
       })).catch(e => console.log(`Error: ${e.message}`))
   }
 
-  statusChangeHandler = () => {
+  getBooks = () => {
       BooksAPI.getAll()
       .then(books => this.setState({
         books
       })).catch(e => console.log(`Error: ${e.message}`))
-      this.forceUpdate();
   }
 
   render () {
     return (
       <div className='app'>
         <Route path='/search' render={() => (
-          <Search books={this.state.books} statusChangeHandler={this.statusChangeHandler}/>
+          <Search books={this.state.books} getBooks={this.getBooks}/>
         	)} />
         <Route exact path='/' render={() => (
-          <Shelves books={this.state.books} statusChangeHandler={this.statusChangeHandler}/>
+          <Shelves books={this.state.books} getBooks={this.getBooks}/>
         	)} />
       </div>
     );

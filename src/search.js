@@ -13,12 +13,11 @@ class Search extends Component {
   }
 
   componentDidMount () {
-      BooksAPI.getAll()
-      .then(books => {(this.setState({
-        shelvesBooksIdAndShelf: books.map(book => ({id: book.id, shelf: book.shelf}))
-      }));
-      this.setState({shelvesBooks: books})
-    }).catch(e => console.log(`Error: ${e.message}`))
+      this.setState({
+        shelvesBooksIdAndShelf: this.props.books.map(book => ({id: book.id, shelf: book.shelf}))
+      });
+      this.setState({shelvesBooks: this.props.books})
+
   }
 
   searchChangeHandler = (e) => {
