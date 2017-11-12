@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
-import CurrentlyReading from './currentlyreading'
-import WantToRead from './wanttoread'
-import Read from './read'
+import CurrentlyReading from './CurrentlyReading'
+import WantToRead from './WantToRead'
+import Read from './Read'
 
 class Shelves extends Component {
 
