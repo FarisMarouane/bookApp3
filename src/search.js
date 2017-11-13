@@ -31,7 +31,6 @@ class Search extends Component {
 
   render () {
     const { shelvesBooksIdAndShelf, shelvesBooks, bookSearchResults } = this.state;
-    const { getBooks } = this.props;
     return (
           <div>
             <div className="search-books-bar">
@@ -66,7 +65,7 @@ class Search extends Component {
                           <Book status={(typeof bookSearchResultOnShelveStatus === 'object') ?
                             bookSearchResultOnShelveStatus.shelf : 'none'} book={typeof bookSearchResultOnShelveStatus === 'object' ?
                             bookSearchResultOnShelve : book} originalRating={book.averageRating}
-                            getBooks={() => getBooks()}/>
+                             />
                         </li>
                       )
                   }

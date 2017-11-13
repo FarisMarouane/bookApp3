@@ -9,17 +9,11 @@ class Book extends Component {
     newRating: +localStorage.getItem(this.props.book.id),
   }
 
-
-
   optionChangeHandler = (e) => {
     const {book} = this.props;
     BooksAPI.update(book, e.target.value)
     .then(res => console.log(`Update fetch resp: ${res}`))
     .catch(err => console.log(`Error: ${err}`))
-
-    this.setState({
-      status: e.target.value
-    })
 
     this.props.getBooks();
   }

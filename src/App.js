@@ -15,10 +15,19 @@ constructor(props) {
 }
 
   componentDidMount () {
-      BooksAPI.getAll()
-      .then(books => this.setState({
-        books
-      })).catch(e => console.log(`Error: ${e.message}`))
+    this.getBooks();
+  }
+
+  optionChangeHandler (e, book) {
+    BooksAPI.update(book, e.target.value)
+    .then(res => console.log(`Update fetch resp: ${res}`))
+    .catch(err => console.log(`Error: ${err}`))
+
+    this.setState({
+      status: e.target.value
+    })
+
+    this.getBooks();
   }
 
   getBooks = () => {
@@ -32,10 +41,10 @@ constructor(props) {
     return (
       <div className='app'>
         <Route path='/search' render={() => (
-          <Search books={this.state.books} getBooks={this.getBooks}/>
+          <Search books={this.state.books} />
         	)} />
         <Route exact path='/' render={() => (
-          <Shelves books={this.state.books} getBooks={this.getBooks}/>
+          <Shelves books={this.state.books} />
         	)} />
       </div>
     );
