@@ -14,11 +14,11 @@ class Shelves extends Component {
             <div className="list-books-content">
               <div>
 
-                <Shelf title={'Currently Reading'} query={'currentlyReading'}
+                <Shelf title={'Currently Reading'} optionChangeHandler={this.props.optionChangeHandler} query={'currentlyReading'}
                   books={books} />
-                <Shelf title={'Want To Read'} query={'wantToRead'}
+                <Shelf title={'Want To Read'} optionChangeHandler={this.props.optionChangeHandler} query={'wantToRead'}
                   books={books} />
-                <Shelf title={'Read'} query={'read'}
+                <Shelf title={'Read'} optionChangeHandler={this.props.optionChangeHandler} query={'read'}
                   books={books} />
 
               </div>

@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import Book from './Book'
 import * as BooksAPI from './BooksAPI'
+import { Debounce } from 'react-throttle'
 
 
 class Search extends Component {
@@ -31,6 +32,7 @@ class Search extends Component {
 
   render () {
     const { shelvesBooksIdAndShelf, shelvesBooks, bookSearchResults } = this.state;
+    const { optionChangeHandler } = this.props;
     return (
           <div>
             <div className="search-books-bar">
@@ -44,7 +46,10 @@ class Search extends Component {
                   However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                   you don't find a specific author or title. Every search is limited by search terms.
                 */}
-                <input onChange={this.searchChangeHandler} type="text" placeholder="Search by title or author"/>
+
+                <Debounce time="400" handler="onChange">
+                  <input onChange={this.searchChangeHandler} type="text" placeholder="Search by title or author"/>
+                </Debounce>
 
               </div>
             </div>
@@ -63,7 +68,7 @@ class Search extends Component {
                     return (
                         <li key={i}>
                           <Book status={(typeof bookSearchResultOnShelveStatus === 'object') ?
-                            bookSearchResultOnShelveStatus.shelf : 'none'} book={typeof bookSearchResultOnShelveStatus === 'object' ?
+                            bookSearchResultOnShelveStatus.shelf : 'none'} optionChangeHandler={optionChangeHandler} book={typeof bookSearchResultOnShelveStatus === 'object' ?
                             bookSearchResultOnShelve : book} originalRating={book.averageRating}
                              />
                         </li>

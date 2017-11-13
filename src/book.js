@@ -30,6 +30,7 @@ class Book extends Component {
 
   render () {
   const book = this.props.book;
+  const optionChangeHandler = this.props.optionChangeHandler;
   const originalRating = this.props.originalRating || 0;
   const newRating = +localStorage.getItem(this.props.book.id);
 
@@ -40,7 +41,7 @@ class Book extends Component {
             <div title={book.description} className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
           </a>
             <div className="book-shelf-changer">
-              <select value={this.props.status} onChange={(e) => this.optionChangeHandler(e)}>
+              <select value={this.props.status} onChange={(e) => optionChangeHandler(e, book)}>
                 <option value="dunno" disabled>Move to...</option>
                 <option value="currentlyReading">currentlyReading</option>
                 <option value="wantToRead">wantToRead</option>
