@@ -7,9 +7,12 @@ import './App.css';
 
 class BooksApp extends React.Component {
 
-  state = {
+constructor(props) {
+  super(props);
+  this.state = {
     books: []
-  }
+  };
+}
 
   componentDidMount () {
       BooksAPI.getAll()
