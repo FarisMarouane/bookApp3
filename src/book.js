@@ -1,22 +1,15 @@
 import React, {Component} from 'react'
-import * as BooksAPI from './BooksAPI'
 import ReactStars from 'react-stars'
 
 class Book extends Component {
 
-  state = {
-    book: this.props.book,
-    newRating: +localStorage.getItem(this.props.book.id),
-  }
 
-  optionChangeHandler = (e) => {
-    const {book} = this.props;
-    BooksAPI.update(book, e.target.value)
-    .then(res => console.log(`Update fetch resp: ${res}`))
-    .catch(err => console.log(`Error: ${err}`))
-
-    this.props.getBooks();
-  }
+constructor(props) {
+  super(props);
+  this.state = {
+    newRating: +localStorage.getItem(this.props.book.id)
+  };
+}
 
   ratingChanged = (newRating) => {
     if(this.state.originalRating !== 0) {
