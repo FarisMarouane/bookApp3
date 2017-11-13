@@ -21,9 +21,8 @@ constructor(props) {
   optionChangeHandler = (e, book) => {
     BooksAPI.update(book, e.target.value)
     .then(res => console.log(`Update fetch resp: ${res}`))
+    .then(() => this.getBooks())
     .catch(err => console.log(`Error: ${err}`))
-
-    this.getBooks();
   }
 
   getBooks = () => {
