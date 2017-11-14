@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
-import Book from './Book'
+import Book from './book'
 import * as BooksAPI from './BooksAPI'
 import { Debounce } from 'react-throttle'
 
